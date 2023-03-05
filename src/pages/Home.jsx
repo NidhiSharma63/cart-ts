@@ -1,36 +1,18 @@
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
+import Item from "../components/Home/Item";
+
+import { useFecth } from "../hooks/useFetch";
 
 const Home = () => {
+  const { data } = useFecth();
+  console.log(data);
+
   return (
     <Grid container mt={8} ml={0.5} spacing={2}>
-      <Grid item xs={8}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
-            sx={{ height: 140 }}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      </Grid>
+      {data?.map((item) => {
+        return <Item key={item.id} item={item} />;
+      })}
     </Grid>
   );
 };
