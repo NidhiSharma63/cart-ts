@@ -40,7 +40,9 @@ const Item = ({ item }: IItemProps) => {
         </CardContent>
         <CardActions>
           <Button size="small">${item.price}</Button>
-          <Button size="small">Add to cart</Button>
+          <Button variant="contained" size="small">
+            Add to cart
+          </Button>
         </CardActions>
       </Card>
     </Grid>
