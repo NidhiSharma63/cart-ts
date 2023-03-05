@@ -1,10 +1,15 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import { useState, MouseEvent } from "react";
+
+import {
+  Box,
+  Grid,
+  Typography,
+  Button,
+  CardContent,
+  CardMedia,
+  CardActions,
+  Card,
+} from "@mui/material";
 
 interface IItemProps {
   item: {
@@ -22,6 +27,14 @@ interface IItemProps {
 }
 
 const Item = ({ item }: IItemProps) => {
+  const [isAddCart, setIsAddCart] = useState<boolean>(true);
+
+  const hideCartButton = (event: MouseEvent<HTMLButtonElement>) =>
+    setIsAddCart(false);
+
+  const showCartButton = (event: MouseEvent<HTMLButtonElement>) =>
+    setIsAddCart(true);
+
   return (
     <Grid item xs={4}>
       <Card sx={{ maxWidth: 345, minheight: 450, cursor: "pointer" }}>
@@ -40,9 +53,25 @@ const Item = ({ item }: IItemProps) => {
         </CardContent>
         <CardActions>
           <Button size="small">${item.price}</Button>
-          <Button variant="contained" size="small">
-            Add to cart
-          </Button>
+          {isAddCart ? (
+            <Button variant="contained" size="small" onClick={hideCartButton}>
+              Add to cart
+            </Button>
+          ) : (
+            <Box display="flex" alignItems="center">
+              <Button size="small">+</Button>
+              <Typography>7</Typography>
+              <Button size="small">-</Button>
+              <Button
+                variant="contained"
+                color="error"
+                size="small"
+                onClick={showCartButton}
+              >
+                Remove
+              </Button>
+            </Box>
+          )}
         </CardActions>
       </Card>
     </Grid>
