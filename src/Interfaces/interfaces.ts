@@ -1,7 +1,5 @@
 
-
-export interface IItemProps {
-  item: {
+export interface IData {
     category: string;
     description: string;
     id: number;
@@ -12,5 +10,9 @@ export interface IItemProps {
       rate: number;
     };
     title: string;
-  };
+}
+
+
+export interface IItemProps {
+  item: IData
 }

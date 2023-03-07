@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     case "Get_Data":
       return {
         ...state,
-        data: [action.payload],
+        data: action.payload,
       };
 
     default:
@@ -21,6 +21,6 @@ const reducer = (state, action) => {
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const value = { state, dispatch };
+  const value = { dataState: state, dispatch };
   return <dataContext.Provider value={value}>{children}</dataContext.Provider>;
 };
