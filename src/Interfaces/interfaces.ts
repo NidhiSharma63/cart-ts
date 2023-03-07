@@ -4,12 +4,12 @@ export interface IItemProps {
   item: {
     category: string;
     description: string;
-    id: Number;
+    id: number;
     image: string;
     price: string;
     rating: {
-      count: Number;
-      rate: Number;
+      count: number;
+      rate: number;
     };
     title: string;
   };

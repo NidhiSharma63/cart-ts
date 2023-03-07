@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { cartContext } from "../context/CartContex";
 import Grid from "@mui/material/Grid";
 
 import Item from "../components/Home/Item";
@@ -8,8 +6,6 @@ import { useFecth } from "../hooks/useFetch";
 
 const Home = () => {
   const { data } = useFecth();
-  const { state } = useContext(cartContext);
-  console.log(state, "this is state");
   return (
     <Grid container mt={8} ml={0.5} spacing={2}>
       {data?.map((item) => {
