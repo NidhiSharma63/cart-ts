@@ -1,4 +1,5 @@
 import { useState, MouseEvent } from "react";
+import { IItemProps } from "../../Interfaces/interfaces";
 
 import {
   Box,
@@ -10,21 +11,6 @@ import {
   CardActions,
   Card,
 } from "@mui/material";
-
-interface IItemProps {
-  item: {
-    category: string;
-    description: string;
-    id: Number;
-    image: string;
-    price: string;
-    rating: {
-      count: Number;
-      rate: Number;
-    };
-    title: string;
-  };
-}
 
 const Item = ({ item }: IItemProps) => {
   const [isAddCart, setIsAddCart] = useState<boolean>(true);

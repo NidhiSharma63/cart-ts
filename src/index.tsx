@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { CartContextProvider } from "./context/CartContex";
 
 import App from "./App";
 
 const element = (
   <BrowserRouter>
-    <App />
+    <CartContextProvider>
+      <App />
+    </CartContextProvider>
   </BrowserRouter>
 );
 
