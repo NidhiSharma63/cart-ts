@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useContext, useEffect } from "react";
+import { useState, MouseEvent, useContext } from "react";
 import { IItemProps } from "../../Interfaces/interfaces";
 import { cartContext } from "../../context/CartContex";
 
