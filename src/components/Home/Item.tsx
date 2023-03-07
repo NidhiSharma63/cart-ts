@@ -14,18 +14,15 @@ import {
 } from "@mui/material";
 
 const Item = ({ item }: IItemProps) => {
-  const [isAddCart, setIsAddCart] = useState<boolean>(true);
   const [count, setCount] = useState<number>(1);
 
-  const { dispatch } = useContext(cartContext);
+  const { state, dispatch } = useContext(cartContext);
 
   const hideCartButton = (event: MouseEvent<HTMLButtonElement>, id: number) => {
-    setIsAddCart(false);
     dispatch({ type: "Add_To_Cart", payload: { id, quantity: count } });
   };
 
   const showCartButton = (event: MouseEvent<HTMLButtonElement>, id: number) => {
-    setIsAddCart(true);
     dispatch({ type: "Remove_Cart", payload: { id } });
   };
 
@@ -61,15 +58,10 @@ const Item = ({ item }: IItemProps) => {
         </CardContent>
         <CardActions>
           <Button size="small">${item.price}</Button>
-          {isAddCart ? (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={(e) => hideCartButton(e, item.id)}
-            >
-              Add to cart
-            </Button>
-          ) : (
+          {state.cartItem.find(
+            (cartItem: { id: number; quantity: number }) =>
+              cartItem.id === item.id
+          ) ? (
             <Box display="flex" alignItems="center">
               <Button size="small" onClick={(e) => increaseCart(e, item.id)}>
                 +
@@ -87,6 +79,14 @@ const Item = ({ item }: IItemProps) => {
                 Remove
               </Button>
             </Box>
+          ) : (
+            <Button
+              variant="contained"
+              size="small"
+              onClick={(e) => hideCartButton(e, item.id)}
+            >
+              Add to cart
+            </Button>
           )}
         </CardActions>
       </Card>
