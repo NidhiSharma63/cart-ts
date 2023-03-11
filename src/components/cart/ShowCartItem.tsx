@@ -4,13 +4,24 @@ import { dataContext } from "../../context/DataContext";
 import Item from "../Home/Item";
 import Grid from "@mui/material/Grid";
 
-import { IData } from "../../Interfaces/interfaces";
+interface IData {
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: string;
+  rating: {
+    count: number;
+    rate: number;
+  };
+  title: string;
+}
 
 const ShowCartItem = () => {
   const { state } = useContext(cartContext);
   const { dataState } = useContext(dataContext);
 
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<IData[]>([]);
 
   useEffect(() => {
     const items = dataState.data.filter((item: IData) => {
