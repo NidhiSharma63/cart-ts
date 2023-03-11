@@ -9,7 +9,7 @@ const App: React.FC = (): JSX.Element => {
     path: "/",
     element: <Navbar />,
     children: [
-      { path: "/home", element: <Home /> },
+      { path: "/", element: <Home /> },
       { path: "cart", element: <Cart /> },
     ],
   };
